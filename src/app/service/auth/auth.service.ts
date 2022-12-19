@@ -9,6 +9,7 @@ export class AuthService implements OnDestroy {
   isAdmin = true;
   isLoggedIn = false;
   private signupSubscription!: Subscription;
+  private loginSubscription!: Subscription;
   constructor(private router: Router) {}
 
   signUp() {
@@ -33,8 +34,23 @@ export class AuthService implements OnDestroy {
   }
 
   login() {
-    this.router.navigate(['/utenti']);
-    this.isLoggedIn = true;
+    const loginObservable = new Observable((observer) => {
+      let user = [
+        {
+          email: 'mimmo@gmm.com',
+          password: 'mimmone',
+        },
+      ];
+      setTimeout(() => {
+        observer.next(user);
+        this.isLoggedIn = true;
+        this.router.navigate(['/utenti']);
+      }, 3000);
+    });
+
+    this.signupSubscription = loginObservable.subscribe((data) => {
+      console.log(data);
+    });
   }
 
   logout() {

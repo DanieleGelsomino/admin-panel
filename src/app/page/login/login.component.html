@@ -1,5 +1,10 @@
 <div class="position-absolute top-50 start-50 translate-middle">
-  <form #loginform="ngForm" (ngSubmit)="onSubmit(loginform)" class="d-flex flex-column">
+  <!-- LOADING SPINNER -->
+  <div *ngIf="isLoading">
+    <app-spinner></app-spinner>
+  </div>
+  <!-- LOADING SPINNER -->
+  <form #loginform="ngForm" (ngSubmit)="onSubmit(loginform)" class="d-flex flex-column" *ngIf="!isLoading">
     <!-- INTESTAZIONE FORM -->
     <div class="text-center mb-4">
       <h1>Accedi</h1>

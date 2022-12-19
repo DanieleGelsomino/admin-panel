@@ -10,12 +10,14 @@ import { AuthService } from 'src/app/service/auth/auth.service';
 })
 export class LoginComponent {
   loginform!: FormGroup;
+  isLoading = false;
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit(loginform: NgForm) {
     if (!loginform.valid) {
       return;
     }
+    this.isLoading = true;
     const email = loginform.value.email;
     const password = loginform.value.password;
     localStorage.setItem('email', email);
