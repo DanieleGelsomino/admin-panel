@@ -19,7 +19,7 @@
     </mat-form-field>
     <!-- / INPUT EMAIL + PASSWORD -->
     <!-- BTN + RECUPERO PASSWORD -->
-    <button mat-raised-button color="primary" class="mt-2">Login</button>
+    <button mat-raised-button color="primary" class="mt-2" [disabled]="!loginform.valid">Login</button>
     <a routerLink="/recupera-password" class="text-center mt-3">Hai dimenticato la password?</a>
     <!-- / BTN + RECUPERO PASSWORD -->
   </form>

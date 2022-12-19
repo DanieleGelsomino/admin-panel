@@ -19,7 +19,6 @@ export class LoginComponent {
     const email = loginform.value.email;
     const password = loginform.value.password;
     localStorage.setItem('email', email);
-    // console.log('email:' + email, 'password:' + password);
     this.authService.login();
 
     loginform.reset();

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/service/auth/auth.service';
 
 @Component({
@@ -10,30 +11,24 @@ import { AuthService } from 'src/app/service/auth/auth.service';
 })
 export class SignUpComponent {
   signinform!: FormGroup;
-
+  isLoading = false;
   constructor(private authService: AuthService, private router: Router) {
     if (localStorage.getItem('email')) {
       this.router.navigate(['/utenti']);
     }
   }
 
-  onSubmit(signinform: NgForm) {
-    if (!signinform.valid) {
+  onSubmit(signupform: NgForm) {
+    if (!signupform.valid) {
       return;
     }
-    const name = signinform.value.nome;
-    const surname = signinform.value.cognome;
-    const email = signinform.value.email;
-    const password = signinform.value.password;
+    this.isLoading = true;
+    const name = signupform.value.nome;
+    const surname = signupform.value.cognome;
+    const email = signupform.value.email;
+    const password = signupform.value.password;
     localStorage.setItem('email', email);
-
-    // console.log(
-    //   'nome:' + name,
-    //   'cognome:' + surname,
-    //   'email:' + email,
-    //   'password:' + password
-    // );
-    this.authService.signIn();
-    signinform.reset();
+    this.authService.signUp();
+    signupform.reset();
   }
 }

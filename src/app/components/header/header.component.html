@@ -3,7 +3,13 @@
     <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
       <mat-icon class="align-middle">menu</mat-icon>
     </button>
-    <span><a routerLink="/"><mat-icon class="align-middle">home</mat-icon></a></span>
+
+    <span><a routerLink="/" *ngIf="!isLogged; else userIsLogged"><mat-icon
+          class="align-middle">home</mat-icon></a></span>
+    <ng-template #userIsLogged>
+      <span><a routerLink="/utenti"><mat-icon class="align-middle">home</mat-icon></a></span>
+    </ng-template>
+
   </div>
   <mat-menu #menu="matMenu">
 
@@ -26,8 +32,7 @@
     <a mat-menu-item routerLink="store" *ngIf="showLink()">
       Store
     </a>
-    <!--   (click)="onLogout()" -->
-    <a mat-menu-item routerLink="home" *ngIf="showLink()">
+    <a mat-menu-item routerLink="home" *ngIf="showLink()" (click)="onLogout()">
       Logout
     </a>
   </mat-menu>

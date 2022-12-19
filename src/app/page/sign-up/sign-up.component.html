@@ -1,5 +1,11 @@
 <div class="d-flex flex-column align-items-center position-absolute top-50 start-50 translate-middle">
-  <form #signinform="ngForm" (ngSubmit)="onSubmit(signinform)" class="d-flex flex-column">
+  <!-- LOADING SPINNER -->
+  <div *ngIf="isLoading">
+    <app-spinner></app-spinner>
+  </div>
+  <!-- LOADING SPINNER -->
+
+  <form #signupform="ngForm" (ngSubmit)="onSubmit(signupform)" class="d-flex flex-column" *ngIf="!isLoading">
     <!-- INTESTAZIONE FORM -->
     <div class="text-center mb-4">
       <h1>Registrazione</h1>
@@ -28,6 +34,11 @@
       <mat-hint align="end">max 10 caratteri {{input.value.length}}/10</mat-hint>
     </mat-form-field>
     <!-- / INPUT NOME + COGNOME + EMAIL + PASSWORD -->
-    <button mat-raised-button color="primary" class="mt-4">Conferma</button>
+    <button mat-raised-button color="primary" class="mt-4" [disabled]="!signupform.valid">Conferma</button>
+    <div>
+      <span class="align-middle me-3">Sei già registrato?</span>
+      <button mat-raised-button color="primary" class="mt-4" routerLink="/login">Effettua il Login</button>
+    </div>
   </form>
+
 </div>

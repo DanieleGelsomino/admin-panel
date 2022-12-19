@@ -21,6 +21,7 @@ export class TableComponent implements AfterViewInit {
   @Input() columns!: string[];
   @Input() elements!: any;
   displayedColumns: string[] = this.columns;
+  isLoading = false;
 
   constructor(private _liveAnnouncer: LiveAnnouncer) {}
   ngAfterViewInit(): void {

@@ -30,16 +30,7 @@ export class UsersComponent implements OnInit {
       this.user = this.usersService.getUser(parseInt(this.singleParamUser!));
     } else {
       this.isSingleUser = false;
-      // this.loadUsers();
     }
-  }
-
-  loadUsers() {
-    this.isLoading = true;
-    setTimeout(() => {
-      this.users = this.usersService.getUsers();
-      this.isLoading = false;
-    }, 1000);
   }
 
   isAdmin() {
