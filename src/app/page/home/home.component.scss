@@ -1,0 +1,14 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+button{
+    padding: 10px 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition:0.3s ease-in-out ;
+    &:hover{
+      transform: scale(1.1);
+    }
+    a {
+        text-decoration: none;
+    }
+}

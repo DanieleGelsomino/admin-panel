@@ -1,0 +1,18 @@
+<mat-toolbar>
+  <div class="d-flex align-items-center">
+    <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
+      <mat-icon class="align-middle">menu</mat-icon>
+    </button>
+    <span><a routerLink="/"><mat-icon class="align-middle">home</mat-icon></a></span>
+  </div>
+  <mat-menu #menu="matMenu">
+    <a mat-menu-item routerLink="utenti">
+      Utenti
+    </a>
+    <a mat-menu-item routerLink="store">
+      Store
+    </a>
+  </mat-menu>
+
+</mat-toolbar>
+<router-outlet></router-outlet>
