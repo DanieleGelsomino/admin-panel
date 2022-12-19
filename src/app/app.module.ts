@@ -31,6 +31,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PasswordRecoveryComponent } from './page/password-recovery/password-recovery.component';
+import { UserDetailsComponent } from './page/user-details/user-details.component';
+import { ProductStoreDetailsComponent } from './page/product-store-details/product-store-details.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { PasswordRecoveryComponent } from './page/password-recovery/password-rec
     SpinnerComponent,
     NotfoundComponent,
     PasswordRecoveryComponent,
+    UserDetailsComponent,
+    ProductStoreDetailsComponent,
   ],
   imports: [
     BrowserModule,

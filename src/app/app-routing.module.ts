@@ -20,17 +20,15 @@ const routes: Routes = [
     component: UsersComponent,
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
-    children: [{ path: ':id', component: UsersComponent }],
   },
-
+  { path: 'utenti/:id', component: UsersComponent },
   {
     path: 'store',
     component: StoreComponent,
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
-    children: [{ path: ':id', component: StoreComponent }],
   },
-
+  { path: 'store/:id', component: StoreComponent },
   { path: '404', component: NotfoundComponent },
   { path: '**', redirectTo: '/404' },
 ];

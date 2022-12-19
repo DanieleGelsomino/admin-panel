@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  isAdmin = false;
+  isAdmin = true;
   constructor(private router: Router) {}
   signIn() {
     this.router.navigate(['/utenti']);

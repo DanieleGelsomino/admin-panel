@@ -1,0 +1,11 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '/src/assets/styles/general.scss';
+
+ul {
+    list-style-type: none;
+    li::before{
+            content:'*'
+
+    }
+
+}

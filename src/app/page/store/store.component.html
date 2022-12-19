@@ -1,1 +1,19 @@
-<p>store works!</p>
+<div class="container mt-5">
+
+  <!-- <div *ngIf="isLoading">
+    <app-loader></app-loader>
+  </div> -->
+  <h1>Store Admin</h1>
+  <h5>Lista prodotti</h5>
+  <!-- TABELLA STORE -->
+  <div *ngIf="!isSingleProduct; else productDetails">
+    <div class="mt-3" *ngIf="!isLoading">
+      <app-table [data]="dataSource" [dati]="'store'" [columns]="displayedColumns"></app-table>
+    </div>
+  </div>
+  <!-- CARD DETTAGLI PRODOTTO -->
+  <ng-template #productDetails>
+    <app-product-store-details [data]="product"></app-product-store-details>
+  </ng-template>
+  <!-- / CARD DETTAGLI PRODOTTO -->
+</div>

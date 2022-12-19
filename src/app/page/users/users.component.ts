@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/service/auth/auth.service';
 import { UsersService } from 'src/app/service/users.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private usersService: UsersService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -38,5 +40,9 @@ export class UsersComponent implements OnInit {
       this.users = this.usersService.getUsers();
       this.isLoading = false;
     }, 1000);
+  }
+
+  isAdmin() {
+    this.authService.isRoleAdmin();
   }
 }
