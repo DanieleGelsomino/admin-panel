@@ -1,0 +1,16 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Dettagli Utente</mat-card-title>
+    <mat-card-subtitle><strong>Id:</strong> {{data.id}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p><strong>Nome: </strong>{{data.nome}}</p>
+    <p><strong>Cognome: </strong>{{data.cognome}}</p>
+    <p><strong>Età: </strong>{{data.eta}}</p>
+    <p><strong>Email: </strong>{{data.email}}</p>
+    <p><strong>Indirizzo: </strong>{{data.indirizzo}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button routerLink="/utenti">Torna agli utenti</button>
+  </mat-card-actions>
+</mat-card>
