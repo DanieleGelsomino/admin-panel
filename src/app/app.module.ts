@@ -29,6 +29,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { PasswordRecoveryComponent } from './page/password-recovery/password-recovery.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     TableComponent,
     SpinnerComponent,
     NotfoundComponent,
+    PasswordRecoveryComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatPaginatorModule,
     ReactiveFormsModule,
     FormsModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,1 +1,21 @@
-<p>users works!</p>
+<div class="container mt-5">
+  <!-- LOADING SPINNER -->
+  <!-- <div *ngIf="isLoading">
+    <app-loader></app-loader>
+  </div> -->
+  <!-- LOADING SPINNER -->
+  <h1>Profilo Admin</h1>
+  <h5>Lista utenti</h5>
+  <!-- TABELLA UTENTI -->
+  <div *ngIf="!isSingleUser; else userDetails">
+    <div class="mt-3" *ngIf="!isLoading">
+      <app-table [data]="dataSource" [dati]="'utenti'" [columns]="displayedColumns"></app-table>
+    </div>
+  </div>
+  <!-- / TABELLA UTENTI -->
+  <!-- CARD DETTAGLI UTENTE -->
+  <ng-template #userDetails>
+    <!-- <app-user-detail [data]="user"></app-user-detail> -->
+  </ng-template>
+  <!-- / CARD DETTAGLI UTENTE -->
+</div>

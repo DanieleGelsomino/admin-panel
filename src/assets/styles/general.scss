@@ -1,0 +1,20 @@
+button{
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition:0.3s ease-in-out ;
+  padding: 10px;
+  &:hover{
+    transform: scale(1.1);
+  }
+}
+
+a{
+text-decoration: none;
+cursor: pointer;
+font-weight: 600;
+}
+
+input.ng-invalid, .error {
+color: #f44336 !important;
+}

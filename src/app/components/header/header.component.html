@@ -6,11 +6,29 @@
     <span><a routerLink="/"><mat-icon class="align-middle">home</mat-icon></a></span>
   </div>
   <mat-menu #menu="matMenu">
-    <a mat-menu-item routerLink="utenti">
+
+    <a mat-menu-item routerLink="login" *ngIf="!showLink()">
+      Login
+    </a>
+
+    <a mat-menu-item routerLink="registrati" *ngIf="!showLink()">
+      Registrati
+    </a>
+
+    <a mat-menu-item routerLink="recupera-password" *ngIf="!showLink()">
+      Recupera password
+    </a>
+
+    <a mat-menu-item routerLink="utenti" *ngIf="showLink()">
       Utenti
     </a>
-    <a mat-menu-item routerLink="store">
+
+    <a mat-menu-item routerLink="store" *ngIf="showLink()">
       Store
+    </a>
+    <!--   (click)="onLogout()" -->
+    <a mat-menu-item routerLink="home" *ngIf="showLink()">
+      Logout
     </a>
   </mat-menu>
 

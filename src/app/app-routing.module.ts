@@ -6,16 +6,31 @@ import { StoreComponent } from './page/store/store.component';
 import { NotfoundComponent } from './page/notfound/notfound.component';
 import { SignUpComponent } from './page/sign-up/sign-up.component';
 import { LoginComponent } from './page/login/login.component';
+import { PasswordRecoveryComponent } from './page/password-recovery/password-recovery.component';
+import { AuthGuard } from './service/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'registrati', component: SignUpComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'utenti', component: UsersComponent },
-  { path: 'utenti/:id', component: UsersComponent },
-  { path: 'store', component: StoreComponent },
-  { path: 'store/:id', component: StoreComponent },
+  { path: 'recupera-password', component: PasswordRecoveryComponent },
+  {
+    path: 'utenti',
+    component: UsersComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    children: [{ path: ':id', component: UsersComponent }],
+  },
+
+  {
+    path: 'store',
+    component: StoreComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    children: [{ path: ':id', component: StoreComponent }],
+  },
+
   { path: '404', component: NotfoundComponent },
   { path: '**', redirectTo: '/404' },
 ];
