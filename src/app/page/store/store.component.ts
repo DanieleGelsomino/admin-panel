@@ -32,19 +32,10 @@ export class StoreComponent implements OnInit {
       );
     } else {
       this.isSingleProduct = false;
-      this.loadProducts();
     }
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  loadProducts() {
-    this.isLoading = true;
-    setTimeout(() => {
-      this.products = this.storeService.getProducts();
-      this.isLoading = false;
-    }, 1000);
   }
 }
