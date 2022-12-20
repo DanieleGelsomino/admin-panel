@@ -17,6 +17,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { TableComponent } from './components/table/table.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { NotfoundComponent } from './page/notfound/notfound.component';
+import { PasswordRecoveryComponent } from './page/password-recovery/password-recovery.component';
+import { UserDetailsComponent } from './page/user-details/user-details.component';
+import { ProductStoreDetailsComponent } from './page/product-store-details/product-store-details.component';
 
 //Angular Material
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -30,9 +33,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { PasswordRecoveryComponent } from './page/password-recovery/password-recovery.component';
-import { UserDetailsComponent } from './page/user-details/user-details.component';
-import { ProductStoreDetailsComponent } from './page/product-store-details/product-store-details.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NotifierComponent } from './components/notifier/notifier.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { ProductStoreDetailsComponent } from './page/product-store-details/produ
     PasswordRecoveryComponent,
     UserDetailsComponent,
     ProductStoreDetailsComponent,
+    NotifierComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +70,7 @@ import { ProductStoreDetailsComponent } from './page/product-store-details/produ
     ReactiveFormsModule,
     FormsModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

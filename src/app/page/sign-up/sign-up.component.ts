@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/service/auth/auth.service';
+import { NotifierService } from 'src/app/service/notifier.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,9 +12,14 @@ import { AuthService } from 'src/app/service/auth/auth.service';
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent {
-  signinform!: FormGroup;
+  user: User;
+  signupform!: FormGroup;
   isLoading = false;
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private notifierService: NotifierService
+  ) {
     if (localStorage.getItem('email')) {
       this.router.navigate(['/utenti']);
     }
@@ -23,8 +30,8 @@ export class SignUpComponent {
       return;
     }
     this.isLoading = true;
-    const name = signupform.value.nome;
-    const surname = signupform.value.cognome;
+    const nome = signupform.value.nome;
+    const cognome = signupform.value.cognome;
     const email = signupform.value.email;
     const password = signupform.value.password;
     localStorage.setItem('email', email);

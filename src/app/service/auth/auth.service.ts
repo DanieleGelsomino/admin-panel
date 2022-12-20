@@ -1,16 +1,21 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-
+import { Observable, Subscription, of } from 'rxjs';
+import { User } from '../../models/User';
+import { NotifierService } from '../notifier.service';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService implements OnDestroy {
+  user: User;
   isAdmin = true;
   isLoggedIn = false;
   private signupSubscription!: Subscription;
   private loginSubscription!: Subscription;
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private notifierService: NotifierService
+  ) {}
 
   signUp() {
     const signupObservable = new Observable((observer) => {
@@ -28,9 +33,24 @@ export class AuthService implements OnDestroy {
       }, 3000);
     });
 
-    this.signupSubscription = signupObservable.subscribe((data) => {
-      console.log(data);
-    });
+    this.signupSubscription = signupObservable.subscribe(
+      (data) => {
+        this.notifierService.showNotification(
+          'Registrazione avvenuta con successo!',
+          'Ok',
+          'success'
+        );
+        console.log(data);
+      },
+      (error) => {
+        this.notifierService.showNotification(
+          'Registrazione fallita',
+          'ok',
+          'error'
+        );
+        console.log(error);
+      }
+    );
   }
 
   login() {
@@ -48,9 +68,20 @@ export class AuthService implements OnDestroy {
       }, 3000);
     });
 
-    this.signupSubscription = loginObservable.subscribe((data) => {
-      console.log(data);
-    });
+    this.loginSubscription = loginObservable.subscribe(
+      (data) => {
+        this.notifierService.showNotification(
+          'Login effettuato!',
+          'Ok',
+          'success'
+        );
+        console.log(data);
+      },
+      (error) => {
+        this.notifierService.showNotification('Login fallito', 'ok', 'error');
+        console.log(error);
+      }
+    );
   }
 
   logout() {

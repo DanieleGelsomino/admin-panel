@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import users from '../data/users.json';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +8,7 @@ import users from '../data/users.json';
 export class UsersService {
   users: any = users;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   checkUser() {
     if (localStorage.getItem('email')) {
