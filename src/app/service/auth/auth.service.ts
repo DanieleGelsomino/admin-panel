@@ -1,8 +1,9 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription, of } from 'rxjs';
-import { User } from '../../models/User';
+import { User } from 'src/app/models/user';
 import { NotifierService } from '../notifier.service';
+import { FormGroup, NgForm } from '@angular/forms';
 @Injectable({
   providedIn: 'root',
 })
@@ -10,30 +11,30 @@ export class AuthService implements OnDestroy {
   user: User;
   isAdmin = true;
   isLoggedIn = false;
-  private signupSubscription!: Subscription;
-  private loginSubscription!: Subscription;
+  signupform: FormGroup;
+  loginform: FormGroup;
+  private authSubscription!: Subscription;
   constructor(
     private router: Router,
     private notifierService: NotifierService
   ) {}
 
-  signUp() {
+  signUp(signupform: NgForm) {
+    const nome = signupform.value.nome;
+    const cognome = signupform.value.cognome;
+    const email = signupform.value.email;
+    const password = signupform.value.password;
     const signupObservable = new Observable((observer) => {
-      let user = [
-        {
-          nome: 'Daniele',
-          cognome: 'Gelso',
-          email: 'mimmo@gmm.com',
-          password: 'mimmone',
-        },
-      ];
+      this.user = new User(nome, cognome, email, password);
       setTimeout(() => {
-        observer.next(user);
+        observer.next(this.user);
+        localStorage.setItem('email', email);
+        localStorage.setItem('password', password);
         this.router.navigate(['/utenti']);
       }, 3000);
     });
 
-    this.signupSubscription = signupObservable.subscribe(
+    this.authSubscription = signupObservable.subscribe(
       (data) => {
         this.notifierService.showNotification(
           'Registrazione avvenuta con successo!',
@@ -53,22 +54,21 @@ export class AuthService implements OnDestroy {
     );
   }
 
-  login() {
+  login(loginform: NgForm) {
     const loginObservable = new Observable((observer) => {
-      let user = [
-        {
-          email: 'mimmo@gmm.com',
-          password: 'mimmone',
-        },
-      ];
+      // const nome = loginform.value.nome;
+      // const cognome = loginform.value.cognome;
+      const email = loginform.value.email;
+      const password = loginform.value.password;
+      this.user = new User('', '', email, password);
       setTimeout(() => {
-        observer.next(user);
+        observer.next(this.user);
         this.isLoggedIn = true;
         this.router.navigate(['/utenti']);
       }, 3000);
     });
 
-    this.loginSubscription = loginObservable.subscribe(
+    this.authSubscription = loginObservable.subscribe(
       (data) => {
         this.notifierService.showNotification(
           'Login effettuato!',
@@ -99,6 +99,6 @@ export class AuthService implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.signupSubscription.unsubscribe();
+    this.authSubscription.unsubscribe();
   }
 }

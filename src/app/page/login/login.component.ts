@@ -16,17 +16,10 @@ import { ErrorStateMatcher } from '@angular/material/core';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements ErrorStateMatcher {
+export class LoginComponent {
   loginform!: FormGroup;
   isLoading = false;
   hide = true;
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-  passwordFormControl = new FormControl('', Validators.required);
-
-  matcher = new ErrorStateMatcher();
 
   constructor(
     private authService: AuthService,
@@ -48,25 +41,13 @@ export class LoginComponent implements ErrorStateMatcher {
     });
   }
 
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-
   onSubmit(loginform: NgForm) {
     if (!loginform.valid) {
       return;
     }
 
     const email = loginform.value.email;
-    const password = loginform.value.password;
+    // const password = loginform.value.password;
     if (email !== localStorage.getItem('email')) {
       this.notifierService.showNotification(
         "l'utente inserito non è presente. Registrati per poter continuare",
@@ -77,7 +58,7 @@ export class LoginComponent implements ErrorStateMatcher {
     } else {
       this.isLoading = true;
       localStorage.setItem('email', email);
-      this.authService.login();
+      this.authService.login(loginform);
       loginform.reset();
     }
   }
