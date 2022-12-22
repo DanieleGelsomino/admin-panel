@@ -5,7 +5,6 @@ import { User } from 'src/app/models/user';
 import { NotifierService } from '../notifier.service';
 import { FormGroup, NgForm } from '@angular/forms';
 import { UsersService } from '../users.service';
-import { SpinnerComponent } from '../../components/spinner/spinner.component';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +34,8 @@ export class AuthService implements OnDestroy {
         observer.next(this.user);
         localStorage.setItem('email', email);
         localStorage.setItem('password', password);
-        this.router.navigate(['/utenti']);
+        localStorage.setItem('role', 'User');
+        this.router.navigate(['/store']);
       }, 3000);
     });
 

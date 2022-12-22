@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../service/users.service';
 import { AuthService } from '../../service/auth/auth.service';
-import { Admin } from '../../models/admin';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +8,6 @@ import { Admin } from '../../models/admin';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  admin: Admin;
   constructor(
     private usersService: UsersService,
     private authService: AuthService
