@@ -18,11 +18,10 @@ import { ErrorStateMatcher } from '@angular/material/core';
 })
 export class LoginComponent {
   loginform!: FormGroup;
-  isLoading = false;
   hide = true;
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private notifierService: NotifierService
   ) {
     if (!localStorage.getItem('email')) {
@@ -45,22 +44,12 @@ export class LoginComponent {
     if (!loginform.valid) {
       return;
     }
-
-    const email = loginform.value.email;
-    // const password = loginform.value.password;
-    if (email !== localStorage.getItem('email')) {
-      this.notifierService.showNotification(
-        "l'utente inserito non è presente. Registrati per poter continuare",
-        'ok',
-        'error'
-      );
-      !loginform.valid;
-    } else {
-      this.isLoading = true;
-      localStorage.setItem('email', email);
-      this.authService.login(loginform);
-      loginform.reset();
-    }
+    this.authService.login(loginform);
+    // if (this.authService.isLoggedIn == true) {
+    //   this.isLoading = true;
+    //   this.authService.login(loginform);
+    //   loginform.reset();
+    // }
   }
 
   onLogout() {

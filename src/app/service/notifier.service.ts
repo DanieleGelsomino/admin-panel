@@ -19,9 +19,9 @@ export class NotifierService {
         action: action,
         type: messageType,
       },
-      // duration: 8000,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom',
+      duration: 5000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
       panelClass: messageType,
     });
   }

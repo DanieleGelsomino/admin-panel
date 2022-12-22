@@ -25,7 +25,7 @@
       Recupera password
     </a>
 
-    <a mat-menu-item routerLink="utenti" *ngIf="showLink()">
+    <a mat-menu-item routerLink="utenti" *ngIf="showLink() && isAdmin()">
       Utenti
     </a>
 

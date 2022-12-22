@@ -38,7 +38,7 @@ export class SignUpComponent {
       this.router.navigate(['/utenti']);
     } else {
       this.notifierService.showNotification(
-        'Non sei ancora Registrato!',
+        'Non sei ancora Registrato',
         'Ok',
         'error'
       );

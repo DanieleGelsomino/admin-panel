@@ -1,10 +1,11 @@
 <div class="position-absolute top-50 start-50 translate-middle">
   <!-- LOADING SPINNER -->
-  <div *ngIf="isLoading">
+  <div *ngIf="this.authService.isLoading">
     <app-spinner></app-spinner>
   </div>
   <!-- LOADING SPINNER -->
-  <form #loginform="ngForm" (ngSubmit)="onSubmit(loginform)" class="d-flex flex-column" *ngIf="!isLoading">
+  <form #loginform="ngForm" (ngSubmit)="onSubmit(loginform)" class="d-flex flex-column"
+    *ngIf="!this.authService.isLoading">
     <!-- INTESTAZIONE FORM -->
     <div class="text-center mb-4">
       <h1>Accedi</h1>

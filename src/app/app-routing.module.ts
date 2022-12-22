@@ -20,6 +20,9 @@ const routes: Routes = [
     component: UsersComponent,
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
+    data: {
+      roles: 'Admin',
+    },
   },
   { path: 'utenti/:id', component: UsersComponent, canActivate: [AuthGuard] },
   {
@@ -27,6 +30,9 @@ const routes: Routes = [
     component: StoreComponent,
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
+    data: {
+      roles: ['Admin', 'User'],
+    },
   },
   { path: 'store/:id', component: StoreComponent, canActivate: [AuthGuard] },
   { path: '404', component: NotfoundComponent },
