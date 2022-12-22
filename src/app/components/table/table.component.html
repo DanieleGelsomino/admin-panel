@@ -5,6 +5,9 @@
   <input matInput (keyup)="applyFilter($event)" #input>
 </mat-form-field>
 <!-- / FILTER -->
+
+
+
 <div class="mat-elevation-z8 overflow-auto dg-table" style="max-height: 500px;">
   <table mat-table [dataSource]="data" class="mat-elevation-z8" multiTemplateDataRows matSort
     (matSortChange)="announceSortChange($event)">
@@ -17,7 +20,7 @@
 
         <ng-container *ngIf="col == 'dettagli'">
           <button mat-icon-button aria-label="Example icon button with a vertical three dot icon"
-            routerLink="/{{dati}}/{{element.id}}">
+            routerLink="/{{paramData}}/{{element.id}}">
             <mat-icon>more_horizontal</mat-icon>
           </button>
         </ng-container>

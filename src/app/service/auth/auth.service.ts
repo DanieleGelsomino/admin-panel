@@ -21,7 +21,9 @@ export class AuthService implements OnDestroy {
     private router: Router,
     private notifierService: NotifierService,
     public usersService: UsersService
-  ) {}
+  ) {
+    this.user;
+  }
 
   signUp(signupform: NgForm) {
     const nome = signupform.value.nome;
@@ -96,7 +98,6 @@ export class AuthService implements OnDestroy {
           'Ok',
           'success'
         );
-        console.log(data);
       },
       (error) => {
         this.notifierService.showNotification('Login fallito', 'ok', 'error');
@@ -124,5 +125,17 @@ export class AuthService implements OnDestroy {
 
   ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
+  }
+
+  getRole() {
+    return this.user.role;
+  }
+
+  isAdminIs() {
+    return localStorage.getItem('role');
+  }
+
+  isUserIs() {
+    return localStorage.getItem('role') == 'User';
   }
 }

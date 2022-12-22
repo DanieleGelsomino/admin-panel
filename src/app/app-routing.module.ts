@@ -8,6 +8,7 @@ import { SignUpComponent } from './page/sign-up/sign-up.component';
 import { LoginComponent } from './page/login/login.component';
 import { PasswordRecoveryComponent } from './page/password-recovery/password-recovery.component';
 import { AuthGuard } from './service/auth/auth.guard';
+import { RoleGuardGuard } from './service/auth/role-guard.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,10 +19,10 @@ const routes: Routes = [
   {
     path: 'utenti',
     component: UsersComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, RoleGuardGuard],
     canActivateChild: [AuthGuard],
     data: {
-      roles: 'Admin',
+      role: ['Admin'],
     },
   },
   { path: 'utenti/:id', component: UsersComponent, canActivate: [AuthGuard] },
@@ -30,9 +31,6 @@ const routes: Routes = [
     component: StoreComponent,
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
-    data: {
-      roles: ['Admin', 'User'],
-    },
   },
   { path: 'store/:id', component: StoreComponent, canActivate: [AuthGuard] },
   { path: '404', component: NotfoundComponent },

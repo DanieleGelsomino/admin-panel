@@ -1,15 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  NgForm,
-  Validators,
-} from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { NotifierService } from '../../service/notifier.service';
-import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
   selector: 'app-login',
@@ -45,11 +37,6 @@ export class LoginComponent {
       return;
     }
     this.authService.login(loginform);
-    // if (this.authService.isLoggedIn == true) {
-    //   this.isLoading = true;
-    //   this.authService.login(loginform);
-    //   loginform.reset();
-    // }
   }
 
   onLogout() {

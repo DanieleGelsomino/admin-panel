@@ -1,14 +1,21 @@
 <mat-toolbar>
   <div class="d-flex align-items-center">
-    <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
-      <mat-icon class="align-middle">menu</mat-icon>
-    </button>
+    <div>
+      <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
+        <mat-icon class="align-middle">menu</mat-icon>
+      </button>
 
-    <span><a routerLink="/" *ngIf="!isLogged; else userIsLogged"><mat-icon
-          class="align-middle">home</mat-icon></a></span>
-    <ng-template #userIsLogged>
-      <span><a routerLink="/utenti"><mat-icon class="align-middle">home</mat-icon></a></span>
-    </ng-template>
+      <span><a routerLink="/" *ngIf="!isLogged; else userIsLogged"><mat-icon
+            class="align-middle">home</mat-icon></a></span>
+      <ng-template #userIsLogged>
+        <span><a routerLink="/utenti"><mat-icon class="align-middle">home</mat-icon></a></span>
+      </ng-template>
+    </div>
+    <div class="ms-2">
+      <span *ngIf="isAdmin()" class="admin-badge">
+        Admin
+      </span>
+    </div>
 
   </div>
   <mat-menu #menu="matMenu">

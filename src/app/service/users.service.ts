@@ -27,4 +27,8 @@ export class UsersService {
   getUser(index: number) {
     return this.users[index];
   }
+
+  getRole() {
+    return localStorage.getItem('role') == 'Admin';
+  }
 }

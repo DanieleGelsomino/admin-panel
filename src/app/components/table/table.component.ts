@@ -16,11 +16,12 @@ import { MatSort, Sort } from '@angular/material/sort';
 })
 export class TableComponent implements AfterViewInit {
   @Input() data!: any;
-  @Input() dati!: string;
+  @Input() paramData!: string;
   @Input() singleData!: any;
   @Input() columns!: string[];
   @Input() elements!: any;
   displayedColumns: string[] = this.columns;
+  dataSource: string[] = this.data;
   isLoading = false;
 
   constructor(private _liveAnnouncer: LiveAnnouncer) {}
@@ -42,5 +43,13 @@ export class TableComponent implements AfterViewInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.data.filter = filterValue.trim().toLowerCase();
+  }
+
+  isAdmin() {
+    return localStorage.getItem('role') == 'Admin';
+  }
+
+  addFormRows() {
+    this.dataSource.push();
   }
 }

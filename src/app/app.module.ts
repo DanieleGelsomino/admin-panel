@@ -20,6 +20,7 @@ import { NotfoundComponent } from './page/notfound/notfound.component';
 import { PasswordRecoveryComponent } from './page/password-recovery/password-recovery.component';
 import { UserDetailsComponent } from './page/user-details/user-details.component';
 import { ProductStoreDetailsComponent } from './page/product-store-details/product-store-details.component';
+import { NotifierComponent } from './components/notifier/notifier.component';
 
 //Angular Material
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -34,7 +35,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { NotifierComponent } from './components/notifier/notifier.component';
+
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,7 @@ import { NotifierComponent } from './components/notifier/notifier.component';
     FormsModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatChipsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
