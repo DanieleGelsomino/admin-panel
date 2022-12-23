@@ -5,11 +5,10 @@
         <mat-icon class="align-middle">menu</mat-icon>
       </button>
 
-      <span><a routerLink="/" *ngIf="!isLogged; else userIsLogged"><mat-icon
-            class="align-middle">home</mat-icon></a></span>
-      <ng-template #userIsLogged>
+      <span><a routerLink="/"><mat-icon class="align-middle">home</mat-icon></a></span>
+      <!-- <ng-template #userIsLogged>
         <span><a routerLink="/utenti"><mat-icon class="align-middle">home</mat-icon></a></span>
-      </ng-template>
+      </ng-template> -->
     </div>
     <div class="ms-2">
       <span *ngIf="isAdmin()" class="admin-badge">

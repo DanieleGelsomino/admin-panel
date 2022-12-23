@@ -27,11 +27,10 @@ export class RoleGuardGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    // return this.isNotAuthorized(route);
-    return this.isNotAuthorized(route);
+    return this.isAuthorized(route);
   }
 
-  isNotAuthorized(route: ActivatedRouteSnapshot) {
+  isAuthorized(route: ActivatedRouteSnapshot) {
     if (this.authService.isAdminIs() === 'Admin') {
       return true;
     }

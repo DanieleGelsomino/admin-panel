@@ -22,7 +22,7 @@ export class AuthService implements OnDestroy {
     private notifierService: NotifierService,
     public usersService: UsersService
   ) {
-    this.user;
+    // this.user;
   }
 
   signUp(signupform: NgForm) {
@@ -133,9 +133,5 @@ export class AuthService implements OnDestroy {
 
   isAdminIs() {
     return localStorage.getItem('role');
-  }
-
-  isUserIs() {
-    return localStorage.getItem('role') == 'User';
   }
 }
