@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { UsersService } from 'src/app/service/users.service';
+import { StorageDataService } from '../../service/storage-data.service';
 
 @Component({
   selector: 'app-users',
@@ -21,7 +22,8 @@ export class UsersComponent implements OnInit {
   constructor(
     private usersService: UsersService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private storageDataService: StorageDataService
   ) {}
 
   ngOnInit(): void {

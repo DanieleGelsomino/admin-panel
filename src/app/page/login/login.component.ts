@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { NotifierService } from '../../service/notifier.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent {
 
   constructor(
     public authService: AuthService,
-    private notifierService: NotifierService
+    private notifierService: NotifierService,
+    private router: Router
   ) {
     if (!localStorage.getItem('email')) {
       this.notifierService.showNotification(
@@ -22,6 +24,8 @@ export class LoginComponent {
         'Ok',
         'error'
       );
+    } else {
+      this.router.navigate(['/store']);
     }
   }
 
