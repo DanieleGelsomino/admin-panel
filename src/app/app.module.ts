@@ -39,6 +39,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { MatChipsModule } from '@angular/material/chips';
+import { ModalComponent } from './page/store/components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { MatChipsModule } from '@angular/material/chips';
     UserDetailsComponent,
     ProductStoreDetailsComponent,
     NotifierComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,

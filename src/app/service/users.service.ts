@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import users from '../data/users.json';
+import users from '../../assets/data/users.json';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
 

@@ -33,11 +33,13 @@ export class AuthService implements OnDestroy {
     const signupObservable = new Observable((observer) => {
       this.user = new User(nome, cognome, email, password, 'User');
       setTimeout(() => {
-        observer.next(this.user);
-        localStorage.setItem('email', email);
-        localStorage.setItem('password', password);
-        localStorage.setItem('role', 'User');
-        this.router.navigate(['/store']);
+        if (localStorage.getItem('Users') && localStorage.getItem('Products')) {
+          observer.next(this.user);
+          localStorage.setItem('email', email);
+          localStorage.setItem('password', password);
+          localStorage.setItem('role', 'User');
+          this.router.navigate(['/store']);
+        }
       }, 3000);
     });
 
@@ -70,14 +72,19 @@ export class AuthService implements OnDestroy {
           this.isLoading = true;
           this.isLoggedIn = true;
           setTimeout(() => {
-            observer.next(this.user);
-            localStorage.setItem('email', user.email);
-            localStorage.setItem('password', user.password);
-            localStorage.setItem('role', user.role);
-            if (user.role == 'Admin') {
-              this.router.navigate(['/utenti']);
-            } else {
-              this.router.navigate(['/store']);
+            if (
+              localStorage.getItem('Users') &&
+              localStorage.getItem('Products')
+            ) {
+              observer.next(this.user);
+              localStorage.setItem('email', user.email);
+              localStorage.setItem('password', user.password);
+              localStorage.setItem('role', user.role);
+              if (user.role == 'Admin') {
+                this.router.navigate(['/utenti']);
+              } else {
+                this.router.navigate(['/store']);
+              }
             }
           }, 3000);
         }

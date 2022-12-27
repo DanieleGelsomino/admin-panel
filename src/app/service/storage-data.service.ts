@@ -1,17 +1,30 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
-import { catchError } from 'rxjs';
-
+import { Observable, catchError } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class StorageDataService implements OnInit {
-  userURL = 'users.json';
+  userURL = '../../assets/data/users.json';
+  productURL = '../../assets/data/products.json';
   constructor(private http: HttpClient) {}
   ngOnInit(): void {}
 
-  public getJSON() {
-    return this.http.get('http://localhost:4200/' + this.userURL);
+  getUsersJSON() {
+    return this.http.get<object[]>(this.userURL).pipe(
+      catchError((error) => {
+        console.log(error);
+        return error;
+      })
+    );
+  }
+
+  getProductsJSON() {
+    return this.http.get<object[]>(this.productURL).pipe(
+      catchError((error) => {
+        console.log(error);
+        return error;
+      })
+    );
   }
 }
