@@ -13,7 +13,7 @@
       <app-table *ngIf="!isAdmin()" [data]="dataSource" [paramData]="'store'" [columns]="displayedColumns"></app-table>
       <!-- / TABELLA STORE USER -->
       <!-- TABELLA STORE ADMIN -->
-      <app-store-table *ngIf="isAdmin()" [paramData]="'store'" [columns]="displayedColumns"></app-store-table>
+      <app-store-table *ngIf="isAdmin()"></app-store-table>
       <!-- / TABELLA STORE ADMIN -->
     </div>
   </div>

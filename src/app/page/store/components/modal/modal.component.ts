@@ -1,13 +1,6 @@
-import { Component, Inject, OnInit, inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import products from '../../../../../assets/data/products.json';
-import {
-  NgForm,
-  FormGroup,
-  ReactiveFormsModule,
-  FormControl,
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { StoreService } from '../../../../service/store.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NotifierService } from '../../../../service/notifier.service';

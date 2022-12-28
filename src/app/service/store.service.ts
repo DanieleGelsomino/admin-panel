@@ -1,8 +1,6 @@
-import { Injectable, ViewChild } from '@angular/core';
+import { Injectable } from '@angular/core';
 import products from '../../assets/data/products.json';
-import { NgForm, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { StorageDataService } from './storage-data.service';
 
 @Injectable({
@@ -23,6 +21,8 @@ export class StoreService {
   getProduct(index: number) {
     return this.products[index];
   }
+
+  // JSON Server
   getProductsJSON() {
     return this.http.get<any>('http://localhost:3000/products/');
   }

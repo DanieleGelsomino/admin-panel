@@ -1,16 +1,9 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import {
-  AfterViewInit,
-  Component,
-  Input,
-  ViewChild,
-  OnInit,
-} from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
-import products from '../../../../assets/data/products.json';
-import { NgForm, FormGroup } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { StoreService } from 'src/app/service/store.service';
 import { ModalComponent } from '../components/modal/modal.component';
@@ -22,13 +15,6 @@ import { NotifierService } from '../../../service/notifier.service';
   styleUrls: ['./store-table.component.scss'],
 })
 export class StoreTableComponent implements OnInit {
-  products: any = products;
-  @Input() data!: any;
-  @Input() paramData!: string;
-  @Input() singleData!: any;
-  @Input() columns!: string[];
-  @Input() elements!: any;
-  // displayedColumns: string[] = this.columns;
   displayedColumns: string[] = [
     'id',
     'titolo',
