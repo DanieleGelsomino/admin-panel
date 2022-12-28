@@ -419,6 +419,20 @@
       "prezzo": "150",
       "categoria": "Casa",
       "n_pezzi": "233"
+    },
+    {
+      "id": "62",
+      "titolo": "Cerchi in lega 19\"",
+      "prezzo": "€500",
+      "categoria": "Auto & Motori",
+      "n_pezzi": "35"
+    },
+    {
+      "id": "63",
+      "titolo": "frigo",
+      "prezzo": "€345",
+      "categoria": "casa",
+      "n_pezzi": "200"
     }
   ]
 }

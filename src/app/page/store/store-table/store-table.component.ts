@@ -28,8 +28,15 @@ export class StoreTableComponent implements OnInit {
   @Input() singleData!: any;
   @Input() columns!: string[];
   @Input() elements!: any;
-  displayedColumns: string[] = this.columns;
-  // dataSource: string[] = this.data;
+  // displayedColumns: string[] = this.columns;
+  displayedColumns: string[] = [
+    'id',
+    'titolo',
+    'prezzo',
+    'categoria',
+    'n_pezzi',
+    'azioni',
+  ];
   dataSource!: MatTableDataSource<any>;
   isLoading = false;
 

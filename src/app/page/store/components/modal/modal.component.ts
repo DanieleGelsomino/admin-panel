@@ -39,7 +39,6 @@ export class ModalComponent implements OnInit {
       n_pezzi: ['', Validators.required],
     });
 
-    // console.log(this.editData);
     if (this.editData) {
       this.actionBtn = 'Modifica';
       this.productsForm.controls['id'].setValue(this.editData.id);
@@ -55,7 +54,6 @@ export class ModalComponent implements OnInit {
       if (this.productsForm.valid) {
         this.storeService.addProduct(this.productsForm.value).subscribe({
           next: (res) => {
-            // console.log(res);
             this.notifierService.showNotification(
               'Aggiunto correttamente',
               'ok',
@@ -65,7 +63,6 @@ export class ModalComponent implements OnInit {
             this.dialogRef.close('Salva');
           },
           error: (err) => {
-            // console.log(err);
             this.notifierService.showNotification('Riprova', 'ok', 'error');
           },
         });
