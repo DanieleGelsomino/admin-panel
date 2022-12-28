@@ -23,6 +23,7 @@ import { PasswordRecoveryComponent } from './page/password-recovery/password-rec
 import { UserDetailsComponent } from './page/user-details/user-details.component';
 import { ProductStoreDetailsComponent } from './page/product-store-details/product-store-details.component';
 import { NotifierComponent } from './components/notifier/notifier.component';
+import { ModalComponent } from './page/store/components/modal/modal.component';
 
 //Angular Material
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -37,9 +38,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
-import { ModalComponent } from './page/store/components/modal/modal.component';
+import { StoreTableComponent } from './page/store/store-table/store-table.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,7 @@ import { ModalComponent } from './page/store/components/modal/modal.component';
     ProductStoreDetailsComponent,
     NotifierComponent,
     ModalComponent,
+    StoreTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,6 +82,8 @@ import { ModalComponent } from './page/store/components/modal/modal.component';
     MatSnackBarModule,
     MatChipsModule,
     HttpClientModule,
+    MatDialogModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

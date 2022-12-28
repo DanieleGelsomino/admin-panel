@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { UsersService } from 'src/app/service/users.service';
 import { StorageDataService } from '../../service/storage-data.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -16,7 +17,7 @@ export class UsersComponent implements OnInit {
   isSingleUser!: boolean;
   isLoading = false;
   singleParamUser = this.route.snapshot.paramMap.get('id');
-  displayedColumns: string[] = ['id', 'nome', 'cognome', 'email', 'dettagli'];
+  displayedColumns: string[] = ['id', 'nome', 'cognome', 'email', 'azioni'];
   dataSource = new MatTableDataSource(this.usersService.getUsers());
 
   constructor(

@@ -7,6 +7,7 @@ import { Observable, catchError } from 'rxjs';
 export class StorageDataService implements OnInit {
   userURL = '../../assets/data/users.json';
   productURL = '../../assets/data/products.json';
+
   constructor(private http: HttpClient) {}
   ngOnInit(): void {}
 

@@ -8,19 +8,20 @@ import {
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
-import { ModalComponent } from '../../page/store/components/modal/modal.component';
 import { MatDialog } from '@angular/material/dialog';
-import products from '../../../assets/data/products.json';
+import products from '../../../../assets/data/products.json';
 import { NgForm, FormGroup } from '@angular/forms';
-import { StoreService } from '../../service/store.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { StoreService } from 'src/app/service/store.service';
+import { ModalComponent } from '../components/modal/modal.component';
+import { NotifierService } from '../../../service/notifier.service';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss'],
+  selector: 'app-store-table',
+  templateUrl: './store-table.component.html',
+  styleUrls: ['./store-table.component.scss'],
 })
-export class TableComponent implements AfterViewInit, OnInit {
+export class StoreTableComponent implements OnInit {
   products: any = products;
   @Input() data!: any;
   @Input() paramData!: string;
@@ -36,15 +37,13 @@ export class TableComponent implements AfterViewInit, OnInit {
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
     public dialog: MatDialog,
-    private storeService: StoreService
+    private storeService: StoreService,
+    private notifierService: NotifierService
   ) {}
   ngOnInit(): void {
     this.getAllProducts();
   }
-  ngAfterViewInit(): void {
-    this.data.sort = this.sort;
-    this.data.paginator = this.paginator;
-  }
+
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -58,21 +57,64 @@ export class TableComponent implements AfterViewInit, OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.data.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   isAdmin() {
     return localStorage.getItem('role') == 'Admin';
   }
 
-  openDialog() {
-    this.dialog.open(ModalComponent), {};
+  addProduct() {
+    this.dialog
+      .open(ModalComponent)
+      .afterClosed()
+      .subscribe((value) => {
+        if (value === 'Salva') {
+          this.getAllProducts();
+        }
+      });
+  }
+
+  editProduct(row: any) {
+    this.dialog
+      .open(ModalComponent, {
+        data: row,
+      })
+      .afterClosed()
+      .subscribe((value) => {
+        if (value === 'Modifica') {
+          this.getAllProducts();
+        }
+      });
+  }
+
+  deleteProduct(id: number) {
+    this.storeService.deleteProduct(id).subscribe({
+      next: (res) => {
+        this.notifierService.showNotification(
+          'Prodotto Eliminato con successo',
+          'ok',
+          'success'
+        );
+        this.getAllProducts();
+      },
+      error: (res) => {
+        this.notifierService.showNotification(
+          'Eliminazione Prodotto non riuscita',
+          'ok',
+          'error'
+        );
+      },
+    });
   }
 
   getAllProducts() {
     this.storeService.getProductsJSON().subscribe({
       next: (res) => {
         this.dataSource = new MatTableDataSource(res);
+        localStorage.setItem('result-data-products', JSON.stringify(res));
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
       },
       error: (err) => {
         console.log(err);

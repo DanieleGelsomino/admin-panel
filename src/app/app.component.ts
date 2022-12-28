@@ -12,12 +12,12 @@ export class AppComponent implements OnInit {
   constructor(private storageDataService: StorageDataService) {}
   ngOnInit(): void {
     this.storageDataService.getUsersJSON().subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       localStorage.setItem('Users', JSON.stringify(res));
     });
 
     this.storageDataService.getProductsJSON().subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       localStorage.setItem('Products', JSON.stringify(res));
     });
   }
