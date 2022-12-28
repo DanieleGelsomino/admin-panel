@@ -1,4 +1,4 @@
-<form [formGroup]="productsForm">
+<form [formGroup]="productsForm" class="d-flex flex-column">
   <mat-form-field appearance="outline" class="mt-3 me-3">
     <mat-label>Id</mat-label>
     <input type="text" matInput formControlName="id">
@@ -13,7 +13,9 @@
   </mat-form-field>
   <mat-form-field appearance="outline" class="mt-3 me-3">
     <mat-label>Categoria</mat-label>
-    <input type="text" matInput formControlName="categoria">
+    <mat-select matInput formControlName="categoria">
+      <mat-option *ngFor="let category of categoryOption" value="{{category}}">{{category}}</mat-option>
+    </mat-select>
   </mat-form-field>
   <mat-form-field appearance="outline" class="mt-3 me-3">
     <mat-label>N. Pezzi</mat-label>

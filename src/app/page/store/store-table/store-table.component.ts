@@ -59,7 +59,9 @@ export class StoreTableComponent implements OnInit {
 
   addProduct() {
     this.dialog
-      .open(ModalComponent)
+      .open(ModalComponent, {
+        width: '40%',
+      })
       .afterClosed()
       .subscribe((value) => {
         if (value === 'Salva') {
@@ -71,6 +73,7 @@ export class StoreTableComponent implements OnInit {
   editProduct(row: any) {
     this.dialog
       .open(ModalComponent, {
+        width: '40%',
         data: row,
       })
       .afterClosed()

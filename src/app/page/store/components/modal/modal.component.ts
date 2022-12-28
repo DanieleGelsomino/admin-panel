@@ -14,7 +14,13 @@ export class ModalComponent implements OnInit {
   products: any = products;
   productsForm!: FormGroup;
   actionBtn: string = 'Salva';
-
+  categoryOption: string[] = [
+    'Casa & Giardino',
+    'TV & Audio',
+    'Moda',
+    'Fitness',
+    'Smarthphone',
+  ];
   constructor(
     private formBuilder: FormBuilder,
     private storeService: StoreService,
