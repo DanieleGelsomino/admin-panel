@@ -6,31 +6,33 @@
     <input matInput (keyup)="applyFilter($event)" #input>
   </mat-form-field>
   <!-- / FILTER -->
-  <div *ngIf="isAdmin()">
-    <button mat-raised-button color="warn" class=" align-self-center" routerLink="/aggiungi">Aggiungi</button>
-  </div>
+
+  <button mat-raised-button color="warn" class=" align-self-center" routerLink="/utenti/aggiungi">Aggiungi</button>
 </div>
+
 <div class="mat-elevation-z8 overflow-auto dg-table" style="max-height: 400px;">
-  <table mat-table [dataSource]="data" class="mat-elevation-z8" multiTemplateDataRows matSort
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" multiTemplateDataRows matSort
     (matSortChange)="announceSortChange($event)">
-    <ng-container *ngFor="let col of columns" matColumnDef="{{col}}">
+    <ng-container *ngFor="let col of displayedColumns" matColumnDef="{{col}}">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by {{col}} ">
         {{col}}
       </th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let row">
         <ng-container *ngIf="col == 'azioni'">
           <div class="d-flex alig-items-center">
-            <button mat-icon-button aria-label="Example icon button with a vertical three dot icon"
-              routerLink="/{{paramData}}/{{element.id}}">
-              <mat-icon>more_horizontal</mat-icon>
+            <button mat-icon-button color="primary" class="align-self-center" (click)="editUser(row.id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" class="align-self-center" (click)="deleteProduct(row.id)">
+              <mat-icon>delete</mat-icon>
             </button>
           </div>
         </ng-container>
-        {{element[col]}}
+        {{row[col]}}
       </td>
     </ng-container>
-    <tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     <!-- Visibile quando non ci sono dati corrispondenti. -->
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" colspan="4">Nessun elemento corrispondente a "{{input.value}}"</td>

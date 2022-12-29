@@ -1,0 +1,41 @@
+<div class="d-flex flex-column align-items-center position-absolute top-50 start-50 translate-middle">
+  <div class="text-center">
+    <h1>Modifica Utente</h1>
+    <h5 class="mt-3">Modifica il campo che desideri e salva</h5>
+  </div>
+  <div class="mt-4">
+    <form [formGroup]="usersForm" class="d-flex flex-column">
+      <mat-form-field appearance="outline" class="mt-3 me-3">
+        <mat-label>Id</mat-label>
+        <input type="text" matInput formControlName="id">
+      </mat-form-field>
+      <div class="d-flez">
+        <mat-form-field appearance="outline" class="mt-3 me-3">
+          <mat-label>Nome</mat-label>
+          <input type="text" matInput formControlName="nome">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mt-3 me-3">
+          <mat-label>Cognome</mat-label>
+          <input type="text" matInput formControlName="cognome">
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="outline" class="mt-3 me-3">
+        <mat-label>Età</mat-label>
+        <input type="text" matInput formControlName="eta">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="mt-3 me-3">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="mt-3 me-3">
+        <mat-label>Indirizzo</mat-label>
+        <input type="text" matInput formControlName="indirizzo">
+      </mat-form-field>
+    </form>
+    <div mat-dialog-actions class="d-flex">
+      <button mat-raised-button color="warn" class="me-2" routerLink="/utenti">Indietro</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!usersForm.valid" (click)="updateUser()">
+        Salva Modifica</button>
+    </div>
+  </div>
+</div>

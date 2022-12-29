@@ -1,0 +1,13 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '/src/assets/styles/general.scss';
+
+button{
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition:0.3s ease-in-out ;
+  padding: 8px 20px;
+  &:hover{
+    transform: scale(1.1);
+  }
+}

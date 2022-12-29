@@ -14,6 +14,7 @@ import products from '../../../assets/data/products.json';
 import { NgForm, FormGroup } from '@angular/forms';
 import { StoreService } from '../../service/store.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { UsersService } from '../../service/users.service';
 
 @Component({
   selector: 'app-table',
@@ -36,9 +37,11 @@ export class TableComponent implements AfterViewInit, OnInit {
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
     public dialog: MatDialog,
-    private storeService: StoreService
+    private storeService: StoreService,
+    private usersService: UsersService
   ) {}
   ngOnInit(): void {
+    this.getAllProducts();
     this.getAllProducts();
   }
   ngAfterViewInit(): void {
@@ -71,6 +74,17 @@ export class TableComponent implements AfterViewInit, OnInit {
 
   getAllProducts() {
     this.storeService.getProductsJSON().subscribe({
+      next: (res) => {
+        this.dataSource = new MatTableDataSource(res);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  getAllUsers() {
+    this.usersService.getUsersJSON().subscribe({
       next: (res) => {
         this.dataSource = new MatTableDataSource(res);
       },

@@ -3,8 +3,10 @@
   <h5>Lista utenti</h5>
   <!-- TABELLA UTENTI -->
   <div *ngIf="!isSingleUser; else userDetails">
-    <div class="mt-3">
-      <app-table [data]="dataSource" [paramData]="'utenti'" [columns]="displayedColumns"></app-table>
+    <div class="mt-3" *ngIf="!isLoading">
+      <app-table *ngIf="!isAdminRole()" [data]="dataSource" [paramData]="'utenti'"
+        [columns]="displayedColumns"></app-table>
+      <app-users-table *ngIf="isAdminRole()"></app-users-table>
     </div>
   </div>
   <!-- / TABELLA UTENTI -->

@@ -9,6 +9,8 @@ import { LoginComponent } from './page/login/login.component';
 import { PasswordRecoveryComponent } from './page/password-recovery/password-recovery.component';
 import { AuthGuard } from './service/auth/auth.guard';
 import { RoleGuardGuard } from './service/auth/role-guard.guard';
+import { AddNewUserComponent } from './page/users/add-new-user/add-new-user.component';
+import { UpdateUserComponent } from './page/users/update-user/update-user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -25,7 +27,18 @@ const routes: Routes = [
       role: ['Admin'],
     },
   },
+  {
+    path: 'utenti/:aggiungi',
+    component: AddNewUserComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'utenti/:id', component: UsersComponent, canActivate: [AuthGuard] },
+
+  {
+    path: 'utenti/:modifica/:id',
+    component: UpdateUserComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'store',
     component: StoreComponent,

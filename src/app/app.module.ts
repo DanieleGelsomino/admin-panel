@@ -42,6 +42,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { StoreTableComponent } from './page/store/store-table/store-table.component';
+import { AddNewUserComponent } from './page/users/add-new-user/add-new-user.component';
+import { UpdateUserComponent } from './page/users/update-user/update-user.component';
+import { UsersTableComponent } from './page/users/users-table/users-table.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,9 @@ import { StoreTableComponent } from './page/store/store-table/store-table.compon
     NotifierComponent,
     ModalComponent,
     StoreTableComponent,
+    AddNewUserComponent,
+    UpdateUserComponent,
+    UsersTableComponent,
   ],
   imports: [
     BrowserModule,

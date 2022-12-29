@@ -39,4 +39,8 @@ export class UsersComponent implements OnInit {
   isAdmin() {
     this.authService.isRoleAdmin();
   }
+
+  isAdminRole() {
+    return localStorage.getItem('role') == 'Admin';
+  }
 }

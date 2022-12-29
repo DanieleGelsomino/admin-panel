@@ -436,7 +436,7 @@
     }
   ],
   "users": [
-    [
+
       {
           "id":"0",
           "nome": "Daniele",
@@ -927,7 +927,5 @@
           "indirizzo": "Via Gobetti 8"
 
       }
-  ]
-
   ]
 }

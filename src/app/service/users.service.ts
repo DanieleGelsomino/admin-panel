@@ -3,6 +3,8 @@ import users from '../../assets/data/users.json';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +15,15 @@ export class UsersService {
   admin: User = new User('admin', 'admin', 'admin@admin', '12345', 'Admin');
   allUser: User[] = [this.user1, this.admin];
   userURL = '../../assets/data/users.json';
+
+  public editUserDetails: any = [];
+  public subject = new Subject<any>();
+  private userEdit = new BehaviorSubject(this.editUserDetails);
+  currentUser = this.userEdit.asObservable();
+  seUser(user: any) {
+    this.userEdit.next(user);
+  }
+
   constructor(private router: Router, private http: HttpClient) {}
 
   checkUser() {
@@ -36,5 +47,26 @@ export class UsersService {
 
   getUserById(id: number) {
     return this.http.get<any>(this.userURL + id);
+  }
+
+  // JSON Server
+  getUsersJSON() {
+    return this.http.get<any>('http://localhost:3000/users/');
+  }
+
+  getUserJSONById(id: number) {
+    return this.http.get<any>('http://localhost:3000/users/' + id);
+  }
+
+  addUser(data: any) {
+    return this.http.post<any>('http://localhost:3000/users/', data);
+  }
+
+  updateUser(id: number, data: any) {
+    return this.http.put<any>('http://localhost:3000/users/' + id, data);
+  }
+
+  deleteUser(id: number) {
+    return this.http.delete<any>('http://localhost:3000/users/' + id);
   }
 }
