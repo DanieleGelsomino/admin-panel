@@ -3,7 +3,7 @@ import users from '../../assets/data/users.json';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, of } from 'rxjs';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,15 +15,6 @@ export class UsersService {
   admin: User = new User('admin', 'admin', 'admin@admin', '12345', 'Admin');
   allUser: User[] = [this.user1, this.admin];
   userURL = '../../assets/data/users.json';
-
-  public editUserDetails: any = [];
-  public subject = new Subject<any>();
-  private userEdit = new BehaviorSubject(this.editUserDetails);
-  currentUser = this.userEdit.asObservable();
-  seUser(user: any) {
-    this.userEdit.next(user);
-  }
-
   constructor(private router: Router, private http: HttpClient) {}
 
   checkUser() {

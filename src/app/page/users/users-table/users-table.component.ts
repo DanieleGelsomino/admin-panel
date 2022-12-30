@@ -97,15 +97,6 @@ export class UsersTableComponent implements OnInit {
   }
 
   editUser(id: number) {
-    this.usersService.getUserJSONById(id).subscribe({
-      next: (res) => {
-        this.usersService.seUser(res);
-        console.log(res);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
     this.router.navigate(['/utenti/modifica/' + id]);
   }
 }

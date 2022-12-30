@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NotifierService } from 'src/app/service/notifier.service';
 import { UsersService } from 'src/app/service/users.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { observable } from 'rxjs';
 
 @Component({
@@ -13,7 +13,6 @@ import { observable } from 'rxjs';
 })
 export class UpdateUserComponent implements OnInit {
   usersForm!: FormGroup;
-  userSelected: any = undefined;
   constructor(
     private formBuilder: FormBuilder,
     public usersService: UsersService,
@@ -25,20 +24,27 @@ export class UpdateUserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.usersService.currentUser.subscribe((user) => {
-      return (this.userSelected = user);
+    this.usersForm = this.formBuilder.group({
+      id: ['', Validators.required],
+      nome: ['', Validators.required],
+      cognome: ['', Validators.required],
+      eta: ['', Validators.required],
+      email: ['', Validators.required],
+      indirizzo: ['', Validators.required],
     });
-    console.log(this.userSelected);
-    if (this.userSelected) {
-      this.usersForm = this.formBuilder.group({
-        id: [this.userSelected.id, Validators.required],
-        nome: [this.userSelected.nome, Validators.required],
-        cognome: [this.userSelected.cognome, Validators.required],
-        eta: [this.userSelected.eta, Validators.required],
-        email: [this.userSelected.email, Validators.required],
-        indirizzo: [this.userSelected.indirizzo, Validators.required],
+
+    this.usersService
+      .getUserJSONById(parseInt(this.route.snapshot.paramMap.get('id')!))
+      .subscribe((result) => {
+        this.usersForm = this.formBuilder.group({
+          id: [result['id'], Validators.required],
+          nome: [result['nome'], Validators.required],
+          cognome: [result['cognome'], Validators.required],
+          eta: [result['eta'], Validators.required],
+          email: [result['email'], Validators.required],
+          indirizzo: [result['indirizzo'], Validators.required],
+        });
       });
-    }
   }
   updateUser() {
     this.usersService
