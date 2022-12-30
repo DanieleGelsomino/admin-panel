@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '../../../service/users.service';
 import { NotifierService } from '../../../service/notifier.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-new-user',
@@ -14,7 +15,8 @@ export class AddNewUserComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private usersService: UsersService,
-    private notifierService: NotifierService
+    private notifierService: NotifierService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -46,6 +48,7 @@ export class AddNewUserComponent implements OnInit {
             'ok',
             'success'
           );
+          this.router.navigate(['/utenti']);
           this.usersForm.reset();
         },
         error: (err) => {
@@ -53,7 +56,7 @@ export class AddNewUserComponent implements OnInit {
         },
       });
     }
-    console.log(this.usersForm.value);
+    // console.log(this.usersForm.value);
     this.usersService.getUsersJSON();
     this.usersForm.reset();
   }

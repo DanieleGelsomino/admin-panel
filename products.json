@@ -422,7 +422,7 @@
       "cognome": "Tulbu",
       "eta": "35",
       "email": "critulbu@gmail.com",
-      "indirizzo": "via roma 19"
+      "indirizzo": "via roma 187"
     },
     {
       "id": "2",
@@ -887,6 +887,22 @@
       "eta": "23",
       "email": "luca@gmail",
       "indirizzo": "Via trento 30"
+    },
+    {
+      "id": "99",
+      "nome": "Aldo",
+      "cognome": "Baglio",
+      "eta": "67",
+      "email": "aldo@aldo",
+      "indirizzo": "via Terni 48"
+    },
+    {
+      "id": "87",
+      "nome": "pino",
+      "cognome": "silvestre",
+      "eta": "76",
+      "email": "pino@pino",
+      "indirizzo": "via pino 86"
     }
   ]
 }
