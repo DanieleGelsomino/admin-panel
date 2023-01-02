@@ -30,14 +30,20 @@ const routes: Routes = [
   {
     path: 'utenti/:aggiungi',
     component: AddNewUserComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, RoleGuardGuard],
+    data: {
+      role: ['Admin'],
+    },
   },
   { path: 'utenti/:id', component: UsersComponent, canActivate: [AuthGuard] },
 
   {
     path: 'utenti/:modifica/:id',
     component: UpdateUserComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, RoleGuardGuard],
+    data: {
+      role: ['Admin'],
+    },
   },
   {
     path: 'store',
